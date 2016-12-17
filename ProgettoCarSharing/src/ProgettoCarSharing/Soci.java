@@ -7,7 +7,7 @@ public class Soci {
 	String Indirizzo;
 	String Telefono;
 	
-	public Soci(String cf,String Nome, String Cognome, String Indirizzo, String Telefono){
+	public Soci(String cf, String Cognome,String Nome , String Indirizzo, String Telefono){
 		this.cf = cf;
 		this.Nome = Nome;
 		this.Cognome = Cognome;
@@ -53,6 +53,12 @@ public class Soci {
 
 	public void setTelefono(String telefono) {
 		Telefono = telefono;
+	}
+
+	@Override
+	public String toString() {
+		return "Soci [cf=" + cf + ", Nome=" + Nome + ", Cognome=" + Cognome + ", Indirizzo=" + Indirizzo + ", Telefono="
+				+ Telefono + "]";
 	}
 	
 }

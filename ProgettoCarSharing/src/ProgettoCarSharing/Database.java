@@ -27,7 +27,7 @@ public class Database {
 
 			try {
 				// Creo la connessione al database
-				cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?user=root&password=");
+				cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 
 				sql = "SELECT cf,Cognome,Nome,Indirizzo,Telefono FROM soci;";
 				// ________________________________query
