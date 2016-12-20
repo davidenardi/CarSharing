@@ -222,4 +222,45 @@ public class Database {
 
 				return elencoNoleggi;
 			}
+			/*public static ArrayList<Soci> ElencoAutoDisponibili(){
+				ArrayList<Auto> elencoAuto = new ArrayList<Auto>();
+				
+				//connessione al database
+				Connection cn;
+				Statement st;
+				ResultSet rs;
+				String sql;
+				// ________________________________connessione
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+				} catch (ClassNotFoundException e) {
+					System.out.println("ClassNotFoundException: ");
+					System.err.println(e.getMessage());
+				} // fine try-catch
+
+				try {
+					// Creo la connessione al database
+					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+
+					sql = "SELECT auto.modello,auto.marca FROM auto,soci WHERE soci.auto_restituita = 1;";
+					// ________________________________query
+
+					st = cn.createStatement(); // creo sempre uno statement sulla
+												// connessione
+					rs = st.executeQuery(sql); // faccio la query su uno statement
+					while (rs.next() == true) {
+						Soci s = new Soci(rs.getString("cf"), rs.getString("Cognome"), rs.getString("Nome"), rs.getString("Indirizzo"),rs.getString("Telefono"));
+						elencoSoci.add(s);
+					}
+
+					cn.close(); // chiusura connessione
+				} catch (SQLException e) {
+					System.out.println("errore:" + e.getMessage());
+					e.printStackTrace();
+				} // fine try-catch
+
+				
+				return elencoSoci;
+			}
+			*/
 }
