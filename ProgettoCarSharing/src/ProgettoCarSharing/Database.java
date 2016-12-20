@@ -115,7 +115,6 @@ public class Database {
 
 
 					sql = "SELECT codice_noleggio,auto,socio,inzio,fine,auto_restituita FROM noleggi WHERE socio = '" + Where + "';" ;
-					System.out.println(sql);
 					// ________________________________query
 
 					st = cn.createStatement(); // creo sempre uno statement sulla
@@ -139,7 +138,7 @@ public class Database {
 			
 
 			//ritorna un certo arraylist di noleggio, col where per  codice fiscale 
-			public ArrayList<Noleggi> elencoNoleggiWhereCodiceData(String codiceFiscale, String dataInizio){
+			public ArrayList<Noleggi> elencoNoleggiWhereCodiceData(String codiceFiscale, String dataInizio, String dataFine){
 				ArrayList<Noleggi> elencoNoleggi = new ArrayList<Noleggi>();
 				
 				//connessione al database
@@ -160,7 +159,7 @@ public class Database {
 					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 
 
-					sql = "SELECT codice_noleggio,auto,socio,inzio,fine,auto_restituita FROM noleggi WHERE socio = '" + codiceFiscale + "' and inzio >= '"+dataInizio+"';" ;
+					sql = "SELECT codice_noleggio,auto,socio,inzio,fine,auto_restituita FROM noleggi WHERE socio = '" + codiceFiscale + "' and inzio >= '"+dataInizio+"' AND inzio <= '" + dataFine + "';" ;
 					// ________________________________query
 
 					st = cn.createStatement(); // creo sempre uno statement sulla
