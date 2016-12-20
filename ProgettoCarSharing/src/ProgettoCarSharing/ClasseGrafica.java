@@ -165,38 +165,73 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		btnCerca.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String giornoInizio = String.valueOf(dataInizioFiltro.getDay());
-				String meseInizio = String.valueOf(dataInizioFiltro.getMonth());
-				String annoInizio = String.valueOf(dataInizioFiltro.getYear());
-				String dataFiltroInizio = annoInizio.concat("-").concat(meseInizio).concat("-").concat(giornoInizio);
 				
-				String giornoFine = String.valueOf(dataFineFiltro.getDay());
-				String meseFine = String.valueOf(dataFineFiltro.getMonth());
-				String annoFine = String.valueOf(dataFineFiltro.getYear());
-				String dataFiltroFine = annoFine.concat("-").concat(meseFine).concat("-").concat(giornoFine);
-				//System.out.println(dataFiltro);
-				elencoNoleggiWhere = db.elencoNoleggiWhereCodiceData(codFiscaleWhere, dataFiltroInizio, dataFiltroFine);
-				String sRis = combo.getItem(combo.getSelectionIndex());
-				codFiscaleWhere = sRis.substring(0, 16);
-				listCodice.removeAll();
-				listAuto.removeAll();				
-				listInizio.removeAll();
-				listSocio.removeAll();
-				listFine.removeAll();
-				listRestituita.removeAll();
-				for(int i = 0; i<elencoNoleggiWhere.size();i++){
-					listCodice.add(String.valueOf(elencoNoleggiWhere.get(i).codiceNoleggio));
-					listAuto.add(elencoNoleggiWhere.get(i).auto);
-					listSocio.add(elencoNoleggiWhere.get(i).socio);
-					listInizio.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).inizio));;
-					listFine.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).fine));;	
-					if(elencoNoleggiWhere.get(i).autoRestituita == 1){
-						listRestituita.add("Si");
-						}else{
-							listRestituita.add("No");
-						}
-					}	
+				if(combo.getSelectionIndex() >= 0){
+					String giornoInizio = String.valueOf(dataInizioFiltro.getDay());
+					String meseInizio = String.valueOf(dataInizioFiltro.getMonth());
+					String annoInizio = String.valueOf(dataInizioFiltro.getYear());
+					String dataFiltroInizio = annoInizio.concat("-").concat(meseInizio).concat("-").concat(giornoInizio);
+					
+					String giornoFine = String.valueOf(dataFineFiltro.getDay());
+					String meseFine = String.valueOf(dataFineFiltro.getMonth());
+					String annoFine = String.valueOf(dataFineFiltro.getYear());
+					String dataFiltroFine = annoFine.concat("-").concat(meseFine).concat("-").concat(giornoFine);
+					//System.out.println(dataFiltro);
+					elencoNoleggiWhere = db.elencoNoleggiWhereCodiceData(codFiscaleWhere, dataFiltroInizio, dataFiltroFine);
+					
+					String sRis  = combo.getItem(combo.getSelectionIndex());
+					codFiscaleWhere = sRis.substring(0, 16);
+					listCodice.removeAll();
+					listAuto.removeAll();				
+					listInizio.removeAll();
+					listSocio.removeAll();
+					listFine.removeAll();
+					listRestituita.removeAll();
+					for(int i = 0; i<elencoNoleggiWhere.size();i++){
+						listCodice.add(String.valueOf(elencoNoleggiWhere.get(i).codiceNoleggio));
+						listAuto.add(elencoNoleggiWhere.get(i).auto);
+						listSocio.add(elencoNoleggiWhere.get(i).socio);
+						listInizio.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).inizio));;
+						listFine.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).fine));;	
+						if(elencoNoleggiWhere.get(i).autoRestituita == 1){
+							listRestituita.add("Si");
+							}else{
+								listRestituita.add("No");
+							}
+						}	
+				}else{
+					String giornoInizio = String.valueOf(dataInizioFiltro.getDay());
+					String meseInizio = String.valueOf(dataInizioFiltro.getMonth());
+					String annoInizio = String.valueOf(dataInizioFiltro.getYear());
+					String dataFiltroInizio = annoInizio.concat("-").concat(meseInizio).concat("-").concat(giornoInizio);
+					
+					String giornoFine = String.valueOf(dataFineFiltro.getDay());
+					String meseFine = String.valueOf(dataFineFiltro.getMonth());
+					String annoFine = String.valueOf(dataFineFiltro.getYear());
+					String dataFiltroFine = annoFine.concat("-").concat(meseFine).concat("-").concat(giornoFine);
+					//System.out.println(dataFiltro);
+					elencoNoleggiWhere = db.elencoNoleggiWhereData( dataFiltroInizio, dataFiltroFine);
+					listCodice.removeAll();
+					listAuto.removeAll();				
+					listInizio.removeAll();
+					listSocio.removeAll();
+					listFine.removeAll();
+					listRestituita.removeAll();
+					for(int i = 0; i<elencoNoleggiWhere.size();i++){
+						listCodice.add(String.valueOf(elencoNoleggiWhere.get(i).codiceNoleggio));
+						listAuto.add(elencoNoleggiWhere.get(i).auto);
+						listSocio.add(elencoNoleggiWhere.get(i).socio);
+						listInizio.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).inizio));;
+						listFine.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).fine));;	
+						if(elencoNoleggiWhere.get(i).autoRestituita == 1){
+							listRestituita.add("Si");
+							}else{
+								listRestituita.add("No");
+							}
+						}	
+				}
 			}
+				
 		});
 		btnCerca.setBounds(634, 11, 59, 30);
 		btnCerca.setText("Cerca");

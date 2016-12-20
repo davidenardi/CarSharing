@@ -178,4 +178,48 @@ public class Database {
 
 				return elencoNoleggi;
 			}
+			
+			
+			
+			//ritorna un certo arraylist di noleggio, col where per  data inizio e data fine
+			public ArrayList<Noleggi> elencoNoleggiWhereData(String dataInizio, String dataFine){
+				ArrayList<Noleggi> elencoNoleggi = new ArrayList<Noleggi>();
+				
+				//connessione al database
+				Connection cn;
+				Statement st;
+				ResultSet rs;
+				String sql;
+				// ________________________________connessione
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+				} catch (ClassNotFoundException e) {
+					System.out.println("ClassNotFoundException: ");
+					System.err.println(e.getMessage());
+				} // fine try-catch
+
+				try {
+					// Creo la connessione al database
+					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+
+
+					sql = "SELECT codice_noleggio,auto,socio,inzio,fine,auto_restituita FROM noleggi WHERE inzio >= '"+dataInizio+"' AND inzio <= '" + dataFine + "';" ;
+					// ________________________________query
+
+					st = cn.createStatement(); // creo sempre uno statement sulla
+												// connessione
+					rs = st.executeQuery(sql); // faccio la query su uno statement
+					while (rs.next() == true) {
+						Noleggi n = new Noleggi(rs.getInt("codice_noleggio"), rs.getString("auto"), rs.getString("socio"), rs.getDate("inzio"),rs.getDate("fine"), rs.getInt("auto_restituita"));
+						elencoNoleggi.add(n);
+					}
+
+					cn.close(); // chiusura connessione
+				} catch (SQLException e) {
+					System.out.println("errore:" + e.getMessage());
+					e.printStackTrace();
+				} // fine try-catch
+
+				return elencoNoleggi;
+			}
 }
