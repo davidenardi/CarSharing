@@ -73,7 +73,7 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		
 		
 		DateTime dataFineFiltro = new DateTime(shlCarSharingNardi, SWT.BORDER);
-		dataFineFiltro.setBounds(521, 13, 107, 28);
+		dataFineFiltro.setBounds(531, 13, 107, 28);
 		
 		
 		DateTime dataInizioFiltro = new DateTime(shlCarSharingNardi, SWT.BORDER);
@@ -233,12 +233,23 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 			}
 				
 		});
-		btnCerca.setBounds(634, 11, 59, 30);
+		btnCerca.setBounds(648, 13, 59, 30);
 		btnCerca.setText("Cerca");
 		
 		Label lblA = new Label(shlCarSharingNardi, SWT.NONE);
 		lblA.setText("A :");
 		lblA.setBounds(511, 21, 22, 15);
+		
+		Button btnAggiungiUnNuovo = new Button(shlCarSharingNardi, SWT.NONE);
+		btnAggiungiUnNuovo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				System.out.println("apri nuova pagina");
+			}
+		});
+		btnAggiungiUnNuovo.setFont(SWTResourceManager.getFont("Orator Std", 13, SWT.ITALIC));
+		btnAggiungiUnNuovo.setBounds(43, 403, 286, 57);
+		btnAggiungiUnNuovo.setText("Aggiungi un nuovo noleggio");
 		
 		
 		
