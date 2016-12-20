@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 17, 2016 alle 10:43
+-- Creato il: Dic 20, 2016 alle 11:34
 -- Versione del server: 10.1.13-MariaDB
 -- Versione PHP: 7.0.5
 
@@ -41,7 +41,9 @@ INSERT INTO `auto` (`Targa`, `Marca`, `Modello`, `Costo_Giornaliero`) VALUES
 ('AA222DS', 'FIAT', '500', '27.00'),
 ('AB009FG', 'SEAT', 'IBIZA', '25.00'),
 ('BB333EE', 'FORD', 'ESPACE', '50.00'),
-('BC111KL', 'SEAT', 'LEON', '30.00');
+('BC111KL', 'SEAT', 'LEON', '30.00'),
+('CD969RB', 'ALFA ROMEO', 'GIULIA', '50.00'),
+('ZI888LI', 'TOYOTA', 'YARIX', '20.00');
 
 -- --------------------------------------------------------
 
@@ -68,7 +70,9 @@ INSERT INTO `noleggi` (`codice_noleggio`, `auto`, `socio`, `inzio`, `fine`, `aut
 (3, 'BB333EE', 'NCLGO68B80E111T', '2016-01-20', '2016-01-25', 1),
 (4, 'BB333EE', 'RSSMRA19T54A000Z', '2016-10-03', '2016-11-01', 1),
 (5, 'BB333EE', 'VRDNNA41C66S456W', '2016-12-02', '2016-12-10', 0),
-(6, 'AA222DS', 'RSSMRA19T54A000Z', '2017-02-10', '2017-02-15', 0);
+(6, 'AA222DS', 'RSSMRA19T54A000Z', '2017-02-10', '2017-02-15', 0),
+(7, 'ZI888LI', 'RSSMRA19T54A000Z', '2016-12-12', '2016-12-19', 1),
+(8, 'CD969RB', 'RSSMRA19T54A000Z', '2015-07-13', '2015-08-13', 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +129,7 @@ ALTER TABLE `soci`
 -- AUTO_INCREMENT per la tabella `noleggi`
 --
 ALTER TABLE `noleggi`
-  MODIFY `codice_noleggio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `codice_noleggio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
