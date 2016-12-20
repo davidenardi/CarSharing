@@ -244,7 +244,8 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		btnAggiungiUnNuovo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				System.out.println("apri nuova pagina");
+				AggiungoNoleggio aN = new AggiungoNoleggio();
+				aN.open();
 			}
 		});
 		btnAggiungiUnNuovo.setFont(SWTResourceManager.getFont("Orator Std", 13, SWT.ITALIC));

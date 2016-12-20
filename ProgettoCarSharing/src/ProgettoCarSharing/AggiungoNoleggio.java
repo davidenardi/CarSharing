@@ -12,6 +12,10 @@ import java.util.Calendar;
 
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 
 public class AggiungoNoleggio {
 
@@ -50,44 +54,63 @@ public class AggiungoNoleggio {
 	 */
 	protected void createContents() {
 		shlAggiungiNoleggio = new Shell();
-		shlAggiungiNoleggio.setSize(370, 213);
+		shlAggiungiNoleggio.setSize(475, 290);
 		shlAggiungiNoleggio.setText("Aggiungi Noleggio");
 		
 		Label lblDataInizio = new Label(shlAggiungiNoleggio, SWT.NONE);
-		lblDataInizio.setBounds(10, 20, 65, 15);
+		lblDataInizio.setBounds(10, 20, 80, 24);
 		lblDataInizio.setText("Data Inizio:");
 		
-		DateTime dateTime = new DateTime(shlAggiungiNoleggio, SWT.BORDER);
-		dateTime.setBounds(81, 11, 80, 24);
+		DateTime dataInizioNuovo = new DateTime(shlAggiungiNoleggio, SWT.BORDER);
+		dataInizioNuovo.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				//aggiorno la lista delle macchine disponibili per questa data
+			}
+		});
+		dataInizioNuovo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				System.out.println(String.valueOf(dataInizioNuovo));
+			}
+		});
+		dataInizioNuovo.setBounds(96, 20, 111, 24);
 		
 		Label label = new Label(shlAggiungiNoleggio, SWT.SEPARATOR | SWT.HORIZONTAL);
-		label.setBounds(10, 41, 332, 2);
+		label.setBounds(10, 52, 332, 2);
 		
 		Label lblDataFine = new Label(shlAggiungiNoleggio, SWT.NONE);
-		lblDataFine.setBounds(189, 20, 55, 15);
+		lblDataFine.setBounds(213, 20, 75, 24);
 		lblDataFine.setText("Data Fine:");
 		
-		DateTime dateTime_1 = new DateTime(shlAggiungiNoleggio, SWT.BORDER);
-		dateTime_1.setBounds(245, 11, 80, 24);
+		DateTime dataFineNuovo = new DateTime(shlAggiungiNoleggio, SWT.BORDER);
+		dataFineNuovo.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				//aggiorno la lista delle macchine disponibili per questa data
+				
+			}
+		});
+		dataFineNuovo.setBounds(294, 20, 111, 24);
 		
 		Label lblAuto = new Label(shlAggiungiNoleggio, SWT.NONE);
-		lblAuto.setBounds(10, 64, 37, 15);
+		lblAuto.setBounds(10, 71, 46, 36);
 		lblAuto.setText("Auto:");
 		
 		ComboViewer comboViewer = new ComboViewer(shlAggiungiNoleggio, SWT.NONE);
 		Combo combo = comboViewer.getCombo();
-		combo.setBounds(55, 61, 91, 23);
+		combo.setBounds(62, 68, 126, 28);
 		
 		Label lblSocio = new Label(shlAggiungiNoleggio, SWT.NONE);
-		lblSocio.setBounds(156, 64, 37, 15);
+		lblSocio.setBounds(194, 71, 46, 24);
 		lblSocio.setText("Socio:");
 		
 		ComboViewer comboViewer_1 = new ComboViewer(shlAggiungiNoleggio, SWT.NONE);
 		Combo combo_1 = comboViewer_1.getCombo();
-		combo_1.setBounds(199, 58, 143, 23);
+		combo_1.setBounds(246, 68, 155, 28);
 		
 		Button btnAggiungi = new Button(shlAggiungiNoleggio, SWT.NONE);
-		btnAggiungi.setBounds(133, 104, 75, 25);
+		btnAggiungi.setBounds(165, 121, 75, 25);
 		btnAggiungi.setText("Aggiungi");
 
 	}
