@@ -159,8 +159,8 @@ ComboViewer comboViewer;
 				String dataFinePrenotazione = String.valueOf(af).concat("-").concat(String.valueOf(mf).concat("-").concat(String.valueOf(gf)));
 				String auto = comboAuto.getItem(comboAuto.getSelectionIndex());
 				String socio =  comboSocio.getItem(comboSocio.getSelectionIndex());
-				
-				System.out.println("prenotazione: (" + dataInizioPrenotazione+ ") (" + dataFinePrenotazione + ")(" + socio + " " + auto );
+				System.out.println("pronto ad aggiungere");
+				System.out.println("prenotazione aggiunta: (" + dataInizioPrenotazione+ ") (" + dataFinePrenotazione + ")(" + socio + " " + auto );
 			}
 		});
 		btnAggiungi.setBounds(232, 124, 85, 33);
