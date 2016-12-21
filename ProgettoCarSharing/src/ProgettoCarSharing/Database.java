@@ -257,7 +257,7 @@ public class Database {
 				} catch (SQLException e) {
 					System.out.println("errore:" + e.getMessage());
 					e.printStackTrace();
-				} // fine try-catch
+				} // fine try-catcheeee
 
 				
 				return elencoAuto;
