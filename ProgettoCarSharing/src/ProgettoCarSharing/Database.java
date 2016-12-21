@@ -224,6 +224,7 @@ public class Database {
 			}
 			public static ArrayList<Auto> ElencoAutoDisponibili(String dataInizio){
 				ArrayList<Auto> elencoAuto = new ArrayList<Auto>();
+				elencoAuto.removeAll(elencoAuto);
 				
 				//connessione al database
 				Connection cn;
@@ -242,14 +243,58 @@ public class Database {
 					// Creo la connessione al database
 					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 
-					sql = "SELECT auto.Modello,auto.Marca FROM auto,soci WHERE auto.Targa = noleggi.auto and noleggi.fine < '"+ dataInizio + "'";
+					sql = "SELECT auto.Targa,auto.Marca,auto.Modello,costo_giornaliero FROM auto,noleggi WHERE auto.Targa = noleggi.auto and noleggi.fine < '"+ dataInizio + "'";
 					// ________________________________query
 
 					st = cn.createStatement(); // creo sempre uno statement sulla
 												// connessione
 					rs = st.executeQuery(sql); // faccio la query su uno statement
+					
 					while (rs.next() == true) {
-						Auto a = new Auto(rs.getString("Targa"), rs.getString("Marca"), rs.getString("Modello"), rs.getFloat("Costo_Giornaliero"));
+						Auto a = new Auto(rs.getString("Targa"), rs.getString("Marca"), rs.getString("Modello"), rs.getFloat("costo_giornaliero"));
+						elencoAuto.add(a);
+					}
+
+					cn.close(); // chiusura connessione
+				} catch (SQLException e) {
+					System.out.println("errore:" + e.getMessage());
+					e.printStackTrace();
+				} // fine try-catcheeee
+
+				
+				return elencoAuto;
+			}
+			
+			public static ArrayList<Auto> ElencoAutoDisponibiliPrimaDellaFine(String dataFine){
+				ArrayList<Auto> elencoAuto = new ArrayList<Auto>();
+				elencoAuto.removeAll(elencoAuto);
+				
+				//connessione al database
+				Connection cn;
+				Statement st;
+				ResultSet rs;
+				String sql;
+				// ________________________________connessione
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+				} catch (ClassNotFoundException e) {
+					System.out.println("ClassNotFoundException: ");
+					System.err.println(e.getMessage());
+				} // fine try-catch
+
+				try {
+					// Creo la connessione al database
+					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+
+					sql = "SELECT auto.Targa,auto.Marca,auto.Modello,costo_giornaliero FROM auto,noleggi WHERE auto.Targa = noleggi.auto and noleggi.inzio > '"+ dataFine + "'";
+					// ________________________________query
+
+					st = cn.createStatement(); // creo sempre uno statement sulla
+												// connessione
+					rs = st.executeQuery(sql); // faccio la query su uno statement
+					
+					while (rs.next() == true) {
+						Auto a = new Auto(rs.getString("Targa"), rs.getString("Marca"), rs.getString("Modello"), rs.getFloat("costo_giornaliero"));
 						elencoAuto.add(a);
 					}
 

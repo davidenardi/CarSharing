@@ -12,7 +12,9 @@ public class Auto {
 		this.modello = modello;
 		this.costoGiornaliero = costoGiornaliero;
 	}
-
+	public void cancellaDati(){
+	
+		}
 	public String getTarga() {
 		return targa;
 	}

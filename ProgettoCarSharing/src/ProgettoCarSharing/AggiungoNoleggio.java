@@ -2,12 +2,16 @@ package ProgettoCarSharing;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+
+import com.ibm.icu.text.SimpleDateFormat;
+
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Combo;
 
 import java.sql.Date;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -19,7 +23,7 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 
 public class AggiungoNoleggio {
-Database  db = new Database();
+
 ArrayList<Auto> elencoAuto = new ArrayList<Auto>();
 ComboViewer comboViewer;
 	protected Shell shlAggiungiNoleggio;
@@ -61,6 +65,17 @@ ComboViewer comboViewer;
 		shlAggiungiNoleggio.setSize(475, 290);
 		shlAggiungiNoleggio.setText("Aggiungi Noleggio");
 		
+		comboViewer = new ComboViewer(shlAggiungiNoleggio, SWT.NONE);
+		Combo comboAuto = comboViewer.getCombo();
+		comboAuto.setBounds(48, 67, 155, 28);
+		
+		Database  db = new Database();
+		elencoAuto = db.ElencoAutoDisponibili("2016-12-29");
+		for(int i = 0; i<elencoAuto.size();i++){
+			System.out.println(elencoAuto.get(i).marca + " " + elencoAuto.get(i).modello);
+		}
+		aggiornaMacchina(elencoAuto, 0);
+		
 		Label lblDataInizio = new Label(shlAggiungiNoleggio, SWT.NONE);
 		lblDataInizio.setBounds(10, 20, 80, 24);
 		lblDataInizio.setText("Data Inizio:");
@@ -74,8 +89,13 @@ ComboViewer comboViewer;
 				int m = dataInizioNuovo.getMonth();
 				int a = dataInizioNuovo.getYear();
 				String dataInizio = String.valueOf(a).concat("-").concat(String.valueOf(m).concat("-").concat(String.valueOf(g)));
+				Database db = new Database();
 				elencoAuto = db.ElencoAutoDisponibili(dataInizio);
-				aggiornaMacchina(elencoAuto);
+				for(int i = 0; i<elencoAuto.size();i++){
+					System.out.println(elencoAuto.get(i).marca + " " + elencoAuto.get(i).modello);
+				}
+				int comboLenght = comboAuto.getItemCount();
+				aggiornaMacchina(elencoAuto, comboLenght);
 			}
 		});
 		dataInizioNuovo.setBounds(96, 20, 111, 24);
@@ -91,12 +111,17 @@ ComboViewer comboViewer;
 		dataFineNuovo.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				//aggiorno la lista delle macchine disponibili per questa data
 				int g =  dataFineNuovo.getDay();
 				int m = dataFineNuovo.getMonth();
 				int a = dataFineNuovo.getYear();
-				String annoFine = String.valueOf(a).concat("-").concat(String.valueOf(m).concat("-").concat(String.valueOf(g)));
-				System.out.println("anno fine bello: " + annoFine);
+				String dataFine = String.valueOf(a).concat("-").concat(String.valueOf(m).concat("-").concat(String.valueOf(g)));
+				Database db = new Database();
+				elencoAuto = db.ElencoAutoDisponibiliPrimaDellaFine(dataFine);
+				for(int i = 0; i<elencoAuto.size();i++){
+					System.out.println(elencoAuto.get(i).marca + " " + elencoAuto.get(i).modello);
+				}
+				int comboLenght = comboAuto.getItemCount();
+				aggiornaMacchina(elencoAuto, comboLenght);
 			}
 		});
 		dataFineNuovo.setBounds(294, 20, 111, 24);
@@ -117,16 +142,14 @@ ComboViewer comboViewer;
 		btnAggiungi.setBounds(165, 121, 75, 25);
 		btnAggiungi.setText("Aggiungi");
 		
-		 comboViewer = new ComboViewer(shlAggiungiNoleggio, SWT.NONE);
-		Combo comboAuto = comboViewer.getCombo();
-		comboAuto.setBounds(48, 67, 155, 28);
+		
 
 	}
 	
 	public ComboViewer getComboViewer() {
 		return comboViewer;
 	}
-
+	
 	public void setComboViewer(ComboViewer comboViewer) {
 		this.comboViewer = comboViewer;
 	}
@@ -148,8 +171,11 @@ ComboViewer comboViewer;
 		this.elencoAuto = elencoAuto;
 	}
 
-	public void aggiornaMacchina(ArrayList macchine){
+	public void aggiornaMacchina(ArrayList macchine, int comboLenght){
 		ComboViewer combo = getComboViewer();
+		for(int y = 0; y < comboLenght; y++){
+			combo.remove(y);
+		}
 		ArrayList<Auto> elencoAuto2= getElencoAuto();
 		for(int i =0; i<macchine.size();i++){
 			combo.add(elencoAuto2.get(i).marca + " " + elencoAuto2.get(i).modello);
