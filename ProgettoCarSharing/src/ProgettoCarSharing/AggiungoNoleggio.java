@@ -191,11 +191,11 @@ ComboViewer comboViewer;
 				}*/
 					//aggiungo al database la prenotazione
 					int gf =  dataFineNuovo.getDay();
-					int mf = dataFineNuovo.getMonth();
-					System.out.println(mf);
+					int mf = dataFineNuovo.getMonth()+1;
+					
 					int af = dataFineNuovo.getYear();
 					int gi =  dataInizioNuovo.getDay();
-					int mi= dataInizioNuovo.getMonth();
+					int mi= dataInizioNuovo.getMonth()+1;
 					int ai= dataInizioNuovo.getYear();
 					String dataInizioPrenotazione = String.valueOf(ai).concat("-").concat(String.valueOf(mi).concat("-").concat(String.valueOf(gi)));
 					String dataFinePrenotazione = String.valueOf(af).concat("-").concat(String.valueOf(mf).concat("-").concat(String.valueOf(gf)));
