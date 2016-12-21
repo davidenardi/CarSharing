@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Combo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.eclipse.jface.viewers.ComboViewer;
@@ -18,7 +19,9 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 
 public class AggiungoNoleggio {
-
+Database  db = new Database();
+ArrayList<Auto> elencoAuto = new ArrayList<Auto>();
+ComboViewer comboViewer;
 	protected Shell shlAggiungiNoleggio;
 
 	/**
@@ -53,6 +56,7 @@ public class AggiungoNoleggio {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
+
 		shlAggiungiNoleggio = new Shell();
 		shlAggiungiNoleggio.setSize(475, 290);
 		shlAggiungiNoleggio.setText("Aggiungi Noleggio");
@@ -66,12 +70,12 @@ public class AggiungoNoleggio {
 			@Override
 			public void focusLost(FocusEvent e) {
 				//aggiorno la lista delle macchine disponibili per questa data
-			}
-		});
-		dataInizioNuovo.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				System.out.println(String.valueOf(dataInizioNuovo));
+				int g =  dataInizioNuovo.getDay();
+				int m = dataInizioNuovo.getMonth();
+				int a = dataInizioNuovo.getYear();
+				String dataInizio = String.valueOf(a).concat("-").concat(String.valueOf(m).concat("-").concat(String.valueOf(g)));
+				elencoAuto = db.ElencoAutoDisponibili(dataInizio);
+				aggiornaMacchina(elencoAuto);
 			}
 		});
 		dataInizioNuovo.setBounds(96, 20, 111, 24);
@@ -88,7 +92,11 @@ public class AggiungoNoleggio {
 			@Override
 			public void focusLost(FocusEvent e) {
 				//aggiorno la lista delle macchine disponibili per questa data
-				
+				int g =  dataFineNuovo.getDay();
+				int m = dataFineNuovo.getMonth();
+				int a = dataFineNuovo.getYear();
+				String annoFine = String.valueOf(a).concat("-").concat(String.valueOf(m).concat("-").concat(String.valueOf(g)));
+				System.out.println("anno fine: " + annoFine);
 			}
 		});
 		dataFineNuovo.setBounds(294, 20, 111, 24);
@@ -97,24 +105,32 @@ public class AggiungoNoleggio {
 		lblAuto.setBounds(10, 71, 46, 36);
 		lblAuto.setText("Auto:");
 		
-		ComboViewer comboViewer = new ComboViewer(shlAggiungiNoleggio, SWT.NONE);
-		Combo combo = comboViewer.getCombo();
-		combo.setBounds(62, 68, 126, 28);
-		
 		Label lblSocio = new Label(shlAggiungiNoleggio, SWT.NONE);
-		lblSocio.setBounds(194, 71, 46, 24);
+		lblSocio.setBounds(221, 71, 46, 24);
 		lblSocio.setText("Socio:");
 		
 		ComboViewer comboViewer_1 = new ComboViewer(shlAggiungiNoleggio, SWT.NONE);
-		Combo combo_1 = comboViewer_1.getCombo();
-		combo_1.setBounds(246, 68, 155, 28);
+		Combo comboSocio = comboViewer_1.getCombo();
+		comboSocio.setBounds(273, 68, 155, 28);
 		
 		Button btnAggiungi = new Button(shlAggiungiNoleggio, SWT.NONE);
 		btnAggiungi.setBounds(165, 121, 75, 25);
 		btnAggiungi.setText("Aggiungi");
+		
+		 comboViewer = new ComboViewer(shlAggiungiNoleggio, SWT.NONE);
+		Combo comboAuto = comboViewer.getCombo();
+		comboAuto.setBounds(48, 67, 155, 28);
 
 	}
 	
+	public ComboViewer getComboViewer() {
+		return comboViewer;
+	}
+
+	public void setComboViewer(ComboViewer comboViewer) {
+		this.comboViewer = comboViewer;
+	}
+
 	public String ritornaDataOrdinata(Date d){
 		Calendar data = Calendar.getInstance();
 		data.setTime(d);
@@ -123,5 +139,21 @@ public class AggiungoNoleggio {
 		String annoInizio = String.valueOf(data.get(Calendar.YEAR));
 		String dataOrdinata = giornoInizio.concat("-").concat(meseInizio).concat("-").concat(annoInizio);
 		return dataOrdinata;
+	}
+	public ArrayList<Auto> getElencoAuto() {
+		return elencoAuto;
+	}
+
+	public void setElencoAuto(ArrayList<Auto> elencoAuto) {
+		this.elencoAuto = elencoAuto;
+	}
+
+	public void aggiornaMacchina(ArrayList macchine){
+		ComboViewer combo = getComboViewer();
+		ArrayList<Auto> elencoAuto2= getElencoAuto();
+		for(int i =0; i<macchine.size();i++){
+			combo.add(elencoAuto2.get(i).marca + " " + elencoAuto2.get(i).modello);
+		}
+		setComboViewer(combo);
 	}
 }

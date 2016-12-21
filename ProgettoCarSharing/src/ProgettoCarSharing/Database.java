@@ -222,7 +222,7 @@ public class Database {
 
 				return elencoNoleggi;
 			}
-			/*public static ArrayList<Soci> ElencoAutoDisponibili(){
+			public static ArrayList<Auto> ElencoAutoDisponibili(String dataInizio){
 				ArrayList<Auto> elencoAuto = new ArrayList<Auto>();
 				
 				//connessione al database
@@ -242,15 +242,15 @@ public class Database {
 					// Creo la connessione al database
 					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 
-					sql = "SELECT auto.modello,auto.marca FROM auto,soci WHERE soci.auto_restituita = 1;";
+					sql = "SELECT auto.Modello,auto.Marca FROM auto,soci WHERE auto.Targa = noleggi.auto and noleggi.fine < '"+ dataInizio + "'";
 					// ________________________________query
 
 					st = cn.createStatement(); // creo sempre uno statement sulla
 												// connessione
 					rs = st.executeQuery(sql); // faccio la query su uno statement
 					while (rs.next() == true) {
-						Soci s = new Soci(rs.getString("cf"), rs.getString("Cognome"), rs.getString("Nome"), rs.getString("Indirizzo"),rs.getString("Telefono"));
-						elencoSoci.add(s);
+						Auto a = new Auto(rs.getString("Targa"), rs.getString("Marca"), rs.getString("Modello"), rs.getFloat("Costo_Giornaliero"));
+						elencoAuto.add(a);
 					}
 
 					cn.close(); // chiusura connessione
@@ -260,7 +260,6 @@ public class Database {
 				} // fine try-catch
 
 				
-				return elencoSoci;
+				return elencoAuto;
 			}
-			*/
 }
