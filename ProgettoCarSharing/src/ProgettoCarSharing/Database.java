@@ -300,7 +300,7 @@ public class Database {
 
 					cn.close(); // chiusura connessione
 				} catch (SQLException e) {
-					System.out.println("errore:" + e.getMessage());
+					System.out.println("errore :" + e.getMessage());
 					e.printStackTrace();
 				} // fine try-catcheeee
 
