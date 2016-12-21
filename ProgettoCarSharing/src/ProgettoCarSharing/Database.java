@@ -308,14 +308,11 @@ public class Database {
 				return elencoAuto;
 			}
 			
-			public static ArrayList<Auto> AggiungiNoleggip(String dataInizo,String dataFine, String socio, String auto){
-				ArrayList<Auto> elencoAuto = new ArrayList<Auto>();
-				elencoAuto.removeAll(elencoAuto);
-				
+			public static void AggiungiNoleggio(String dataInizio,String dataFine, String socio, String auto){
 				//connessione al database
 				Connection cn;
 				Statement st;
-				ResultSet rs;
+				int rs;
 				String sql;
 				// ________________________________connessione
 				try {
@@ -328,26 +325,19 @@ public class Database {
 				try {
 					// Creo la connessione al database
 					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
-
-					sql = "SELECT auto.Targa,auto.Marca,auto.Modello,costo_giornaliero FROM auto,noleggi WHERE auto.Targa = noleggi.auto and noleggi.inzio > '"+ dataFine + "'";
+					//INSERT INTO `noleggi` (`codice_noleggio`, `auto`, `socio`, `inzio`, `fine`, `auto_restituita`) VALUES (NULL, '', '', '', '', '')
+					sql ="INSERT INTO `noleggi` (`codice_noleggio`, `auto`, `socio`, `inzio`, `fine`, `auto_restituita`) "
+							+ "VALUES (NULL, '"  + auto +  "','" + socio + "','" + dataInizio + "', '"+ dataFine + "', '0')";
 					// ________________________________query
 
 					st = cn.createStatement(); // creo sempre uno statement sulla
 												// connessione
-					rs = st.executeQuery(sql); // faccio la query su uno statement
-					
-					while (rs.next() == true) {
-						Auto a = new Auto(rs.getString("Targa"), rs.getString("Marca"), rs.getString("Modello"), rs.getFloat("costo_giornaliero"));
-						elencoAuto.add(a);
-					}
-
+					rs = st.executeUpdate(sql); // faccio la query su uno statement
+					System.out.println("dati inseriti");
 					cn.close(); // chiusura connessione
 				} catch (SQLException e) {
 					System.out.println("errore :" + e.getMessage());
 					e.printStackTrace();
-				} // fi
-
-				
-				return elencoAuto;
+				} 
 			}
 }

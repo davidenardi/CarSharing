@@ -148,19 +148,63 @@ ComboViewer comboViewer;
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				//aggiungo al database la prenotazione
-				int gf =  dataFineNuovo.getDay();
-				int mf = dataFineNuovo.getMonth();
-				int af = dataFineNuovo.getYear();
-				int gi =  dataInizioNuovo.getDay();
-				int mi= dataInizioNuovo.getMonth();
-				int ai= dataInizioNuovo.getYear();
-				String dataInizioPrenotazione = String.valueOf(ai).concat("-").concat(String.valueOf(mi).concat("-").concat(String.valueOf(gi)));
-				String dataFinePrenotazione = String.valueOf(af).concat("-").concat(String.valueOf(mf).concat("-").concat(String.valueOf(gf)));
-				String auto = comboAuto.getItem(comboAuto.getSelectionIndex());
-				String socio =  comboSocio.getItem(comboSocio.getSelectionIndex());
-				System.out.println("pronto ad aggiungere");
-				System.out.println("prenotazione aggiunta: (" + dataInizioPrenotazione+ ") (" + dataFinePrenotazione + ")(" + socio + " " + auto );
+				/*if(dataFineNuovo.getYear() >= dataInizioNuovo.getYear()){
+					//entro
+					if(dataFineNuovo.getMonth() >= dataInizioNuovo.getMonth()){
+						
+						//aggiungo al database la prenotazione
+						int gf =  dataFineNuovo.getDay();
+						int mf = dataFineNuovo.getMonth();
+						int af = dataFineNuovo.getYear();
+						int gi =  dataInizioNuovo.getDay();
+						int mi= dataInizioNuovo.getMonth();
+						int ai= dataInizioNuovo.getYear();
+						String dataInizioPrenotazione = String.valueOf(ai).concat("-").concat(String.valueOf(mi).concat("-").concat(String.valueOf(gi)));
+						String dataFinePrenotazione = String.valueOf(af).concat("-").concat(String.valueOf(mf).concat("-").concat(String.valueOf(gf)));
+						String auto = comboAuto.getItem(comboAuto.getSelectionIndex());
+						String socio =  comboSocio.getItem(comboSocio.getSelectionIndex());
+						System.out.println("pronto ad aggiungere");
+						System.out.println("prenotazione aggiunta: (" + dataInizioPrenotazione+ ") (" + dataFinePrenotazione + ")(" + socio + " " + auto );
+					
+					}else{
+						if(dataFineNuovo.getDay() >= dataInizioNuovo.getDay()){
+							//aggiungo al database la prenotazione
+							int gf =  dataFineNuovo.getDay();
+							int mf = dataFineNuovo.getMonth();
+							int af = dataFineNuovo.getYear();
+							int gi =  dataInizioNuovo.getDay();
+							int mi= dataInizioNuovo.getMonth();
+							int ai= dataInizioNuovo.getYear();
+							String dataInizioPrenotazione = String.valueOf(ai).concat("-").concat(String.valueOf(mi).concat("-").concat(String.valueOf(gi)));
+							String dataFinePrenotazione = String.valueOf(af).concat("-").concat(String.valueOf(mf).concat("-").concat(String.valueOf(gf)));
+							String auto = comboAuto.getItem(comboAuto.getSelectionIndex());
+							String socio =  comboSocio.getItem(comboSocio.getSelectionIndex());
+							System.out.println("pronto ad aggiungere");
+							System.out.println("prenotazione aggiunta: (" + dataInizioPrenotazione+ ") (" + dataFinePrenotazione + ")(" + socio + " " + auto );
+							
+						}else{
+							System.out.println("data errata");
+						}
+					}
+				}else{
+					System.out.println("data errata");
+				}*/
+					//aggiungo al database la prenotazione
+					int gf =  dataFineNuovo.getDay();
+					int mf = dataFineNuovo.getMonth();
+					System.out.println(mf);
+					int af = dataFineNuovo.getYear();
+					int gi =  dataInizioNuovo.getDay();
+					int mi= dataInizioNuovo.getMonth();
+					int ai= dataInizioNuovo.getYear();
+					String dataInizioPrenotazione = String.valueOf(ai).concat("-").concat(String.valueOf(mi).concat("-").concat(String.valueOf(gi)));
+					String dataFinePrenotazione = String.valueOf(af).concat("-").concat(String.valueOf(mf).concat("-").concat(String.valueOf(gf)));
+					String auto = comboAuto.getItem(comboAuto.getSelectionIndex());
+					String socio = comboSocio.getItem(comboSocio.getSelectionIndex());
+					//socio.substring(0, 16);
+					//auto.substring(0, 7);
+					System.out.println("pronto ad aggiungere: " + dataInizioPrenotazione + " e " + dataFinePrenotazione);
+					//db.AggiungiNoleggio(dataInizioPrenotazione, dataFinePrenotazione, socio.substring(0, 16), auto.substring(0, 7));
 			}
 		});
 		btnAggiungi.setBounds(232, 124, 85, 33);
