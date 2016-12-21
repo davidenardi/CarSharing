@@ -96,7 +96,7 @@ ComboViewer comboViewer;
 				int m = dataFineNuovo.getMonth();
 				int a = dataFineNuovo.getYear();
 				String annoFine = String.valueOf(a).concat("-").concat(String.valueOf(m).concat("-").concat(String.valueOf(g)));
-				System.out.println("anno fine: " + annoFine);
+				System.out.println("anno fine bello: " + annoFine);
 			}
 		});
 		dataFineNuovo.setBounds(294, 20, 111, 24);
