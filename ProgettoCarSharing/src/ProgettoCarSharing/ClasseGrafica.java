@@ -68,7 +68,7 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 	 */
 	protected void createContents() {
 		shlCarSharingNardi = new Shell();
-		shlCarSharingNardi.setSize(923, 573);
+		shlCarSharingNardi.setSize(786, 573);
 		shlCarSharingNardi.setText("Car Sharing Nardi & Borto");
 		
 		
@@ -262,9 +262,6 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		});
 		btnEliminaUnaMacchina.setBounds(43, 466, 192, 35);
 		btnEliminaUnaMacchina.setText("Elimina una macchina");
-		
-		Label label = new Label(shlCarSharingNardi, SWT.NONE);
-		label.setBounds(706, 137, 189, 197);
 		
 		
 		
