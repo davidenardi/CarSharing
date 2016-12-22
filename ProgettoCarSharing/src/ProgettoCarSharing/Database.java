@@ -286,7 +286,7 @@ public class Database {
 					// Creo la connessione al database
 					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 
-					sql = "SELECT auto.Targa,auto.Marca,auto.Modello,costo_giornaliero FROM auto,noleggi WHERE auto.Targa = noleggi.auto and noleggi.inzio > '"+ dataFine + "'";
+					sql = "SELECT DISTINCT auto.Targa,auto.Marca,auto.Modello,costo_giornaliero FROM auto,noleggi WHERE auto.Targa = noleggi.auto and noleggi.inzio > '"+ dataFine + "'";
 					// ________________________________query
 
 					st = cn.createStatement(); // creo sempre uno statement sulla
@@ -339,5 +339,82 @@ public class Database {
 					System.out.println("errore :" + e.getMessage());
 					e.printStackTrace();
 				} 
+			}
+			public static ArrayList<Auto> ElencoAutoDisponibili(){
+				ArrayList<Auto> elencoAuto = new ArrayList<Auto>();
+				elencoAuto.removeAll(elencoAuto);
+				
+				//connessione al database
+				Connection cn;
+				Statement st;
+				ResultSet rs;
+				String sql;
+				// ________________________________connessione
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+				} catch (ClassNotFoundException e) {
+					System.out.println("ClassNotFoundException: ");
+					System.err.println(e.getMessage());
+				} // fine try-catch
+
+				try {
+					// Creo la connessione al database
+					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+
+					sql = "SELECT DISTINCT Targa,Marca,Modello,costo_giornaliero FROM auto WHERE 1";
+					// ________________________________query
+
+					st = cn.createStatement(); // creo sempre uno statement sulla
+												// connessione
+					rs = st.executeQuery(sql); // faccio la query su uno statement
+					
+					while (rs.next() == true) {
+						Auto a = new Auto(rs.getString("Targa"), rs.getString("Marca"), rs.getString("Modello"), rs.getFloat("costo_giornaliero"));
+						elencoAuto.add(a);
+					}
+
+					cn.close(); // chiusura connessione
+				} catch (SQLException e) {
+					System.out.println("errore :" + e.getMessage());
+					e.printStackTrace();
+				} // fi
+
+				
+				return elencoAuto;
+			}
+			
+			public static void EliminaAuto(String targa){
+				
+				//connessione al database
+				Connection cn;
+				Statement st;
+				ResultSet rs;
+				String sql;
+				// ________________________________connessione
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+				} catch (ClassNotFoundException e) {
+					System.out.println("ClassNotFoundException: ");
+					System.err.println(e.getMessage());
+				} // fine try-catch
+
+				try {
+					// Creo la connessione al database
+					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+
+					sql = "DELETE FROM `auto` WHERE `auto`.`Targa` = \'" + targa + "\'";
+					// ________________________________query
+
+					st = cn.createStatement(); // creo sempre uno statement sulla
+												// connessione
+					rs = st.executeQuery(sql); // faccio la query su uno statement
+					
+					System.out.println("riga eliminata correttamente");
+					cn.close(); // chiusura connessione
+				} catch (SQLException e) {
+					System.out.println("errore :" + e.getMessage());
+					e.printStackTrace();
+				} // fi
+
 			}
 }

@@ -122,7 +122,7 @@ public class AggiungoNoleggio {
 			@Override
 			public void focusLost(FocusEvent e) {
 				int g =  dataFineNuovo.getDay();
-				int m = dataFineNuovo.getMonth();
+				int m = dataFineNuovo.getMonth() + 1;
 				int a = dataFineNuovo.getYear();
 				String dataFine = String.valueOf(a).concat("-").concat(String.valueOf(m).concat("-").concat(String.valueOf(g)));
 				Database db = new Database();

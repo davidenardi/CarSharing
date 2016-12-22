@@ -252,6 +252,17 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		btnAggiungiUnNuovo.setBounds(43, 403, 286, 57);
 		btnAggiungiUnNuovo.setText("Aggiungi un nuovo noleggio");
 		
+		Button btnEliminaUnaMacchina = new Button(shlCarSharingNardi, SWT.NONE);
+		btnEliminaUnaMacchina.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Eliminamacchina eM  = new  Eliminamacchina();
+				eM.open();
+			}
+		});
+		btnEliminaUnaMacchina.setBounds(43, 466, 192, 35);
+		btnEliminaUnaMacchina.setText("Elimina una macchina");
+		
 		
 		
 		elencoSoci = db.ElencoSoci();
