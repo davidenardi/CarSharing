@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 import com.ibm.icu.text.SimpleDateFormat;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class AggiungoNoleggio {
 
@@ -66,6 +67,10 @@ public class AggiungoNoleggio {
 		shlAggiungiNoleggio = new Shell();
 		shlAggiungiNoleggio.setSize(567, 307);
 		shlAggiungiNoleggio.setText("Aggiungi Noleggio");
+		
+		Label label_1 = new Label(shlAggiungiNoleggio, SWT.NONE);
+		label_1.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		label_1.setBounds(10, 185, 529, 36);
 		
 		Label lblSocio = new Label(shlAggiungiNoleggio, SWT.NONE);
 		lblSocio.setBounds(253, 71, 54, 24);
@@ -180,7 +185,7 @@ public class AggiungoNoleggio {
 					e1.printStackTrace();
 				}
 				
-				System.out.println("comparazione : " + dataI.compareTo(dataO));
+				//System.out.println("comparazione : " + dataI.compareTo(dataO));
 				if(dataI.compareTo(dataO) >= 0){
 					if(dataI.compareTo(dataF) <= 0 ){
 						System.out.println("date giuste, procedo");
@@ -199,18 +204,23 @@ public class AggiungoNoleggio {
 						//auto.substring(0, 7);
 						System.out.println("pronto ad aggiungere: " + dataInizioPrenotazione + " e " + dataFinePrenotazione);
 						db.AggiungiNoleggio(dataInizioPrenotazione, dataFinePrenotazione, socio.substring(0, 16), auto.substring(0, 7));
+						label_1.setText("dati Inseriti");
 				}else{
 					System.out.println("date sbagliate, reinserire");
+					label_1.setText("Le date non possono essere cosi', ricontrolla");
 				}
 				
 				}else{
 					System.out.println("date sbagliate, reinserire");
+					label_1.setText("Le date non possono essere cosi', ricontrolla");
 				}
 				
 			}
 		});
 		btnAggiungi.setBounds(232, 124, 85, 33);
 		btnAggiungi.setText("Aggiungi");
+		
+		
 		
 
 	}

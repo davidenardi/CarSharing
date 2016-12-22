@@ -73,11 +73,11 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		
 		
 		DateTime dataFineFiltro = new DateTime(shlCarSharingNardi, SWT.BORDER);
-		dataFineFiltro.setBounds(531, 13, 107, 28);
+		dataFineFiltro.setBounds(553, 13, 107, 28);
 		
 		
 		DateTime dataInizioFiltro = new DateTime(shlCarSharingNardi, SWT.BORDER);
-		dataInizioFiltro.setBounds(398, 13, 107, 28);
+		dataInizioFiltro.setBounds(412, 13, 107, 28);
 		
 		Label lblDataInizio = new Label(shlCarSharingNardi, SWT.NONE);
 		lblDataInizio.setBounds(377, 21, 22, 20);
@@ -233,12 +233,12 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 			}
 				
 		});
-		btnCerca.setBounds(648, 13, 59, 30);
+		btnCerca.setBounds(666, 13, 59, 30);
 		btnCerca.setText("Cerca");
 		
 		Label lblA = new Label(shlCarSharingNardi, SWT.NONE);
 		lblA.setText("A :");
-		lblA.setBounds(511, 21, 22, 15);
+		lblA.setBounds(525, 26, 22, 15);
 		
 		Button btnAggiungiUnNuovo = new Button(shlCarSharingNardi, SWT.NONE);
 		btnAggiungiUnNuovo.addSelectionListener(new SelectionAdapter() {
@@ -257,11 +257,14 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Eliminamacchina eM  = new  Eliminamacchina();
-				//eM.open();
+				eM.open();
 			}
 		});
 		btnEliminaUnaMacchina.setBounds(43, 466, 192, 35);
 		btnEliminaUnaMacchina.setText("Elimina una macchina");
+		
+		Label label = new Label(shlCarSharingNardi, SWT.NONE);
+		label.setBounds(706, 137, 189, 197);
 		
 		
 		

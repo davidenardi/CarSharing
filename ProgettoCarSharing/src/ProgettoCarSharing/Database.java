@@ -383,12 +383,12 @@ public class Database {
 				return elencoAuto;
 			}
 			
-			public static void EliminaAuto(String targa){
+public static void EliminaAuto(String targa){
 				
 				//connessione al database
 				Connection cn;
 				Statement st;
-				ResultSet rs;
+				int rs;
 				String sql;
 				// ________________________________connessione
 				try {
@@ -403,13 +403,14 @@ public class Database {
 					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 
 					sql = "DELETE FROM `auto` WHERE `auto`.`Targa` = \'" + targa + "\'";
+					//System.out.println(sql);
 					// ________________________________query
 
 					st = cn.createStatement(); // creo sempre uno statement sulla
 												// connessione
-					rs = st.executeQuery(sql); // faccio la query su uno statement
+					rs = st.executeUpdate(sql); // faccio la query su uno statement
 					
-					System.out.println("riga eliminata correttamente");
+					//System.out.println("riga eliminata correttamente");
 					cn.close(); // chiusura connessione
 				} catch (SQLException e) {
 					System.out.println("errore :" + e.getMessage());
@@ -417,4 +418,39 @@ public class Database {
 				} // fi
 
 			}
+public static void EliminaNoleggi(String targa){
+	
+	//connessione al database
+	Connection cn;
+	Statement st;
+	int rs;
+	String sql;
+	// ________________________________connessione
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+	} catch (ClassNotFoundException e) {
+		System.out.println("ClassNotFoundException: ");
+		System.err.println(e.getMessage());
+	} // fine try-catch
+
+	try {
+		// Creo la connessione al database
+		cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+
+		sql = "DELETE FROM noleggi WHERE noleggi.auto = '" + targa + "'";
+		//System.out.println(sql);
+		// ________________________________query
+
+		st = cn.createStatement(); // creo sempre uno statement sulla
+									// connessione
+		rs = st.executeUpdate(sql); // faccio la query su uno statement
+		
+		//System.out.println("Ci siamo permessi di eliminare anche i noleggi di questa macchina");
+		cn.close(); // chiusura connessione
+	} catch (SQLException e) {
+		System.out.println("errore :" + e.getMessage());
+		e.printStackTrace();
+	} // fi
+
+}
 }
