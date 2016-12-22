@@ -257,7 +257,7 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Eliminamacchina eM  = new  Eliminamacchina();
-				eM.open();
+				//eM.open();
 			}
 		});
 		btnEliminaUnaMacchina.setBounds(43, 466, 192, 35);
