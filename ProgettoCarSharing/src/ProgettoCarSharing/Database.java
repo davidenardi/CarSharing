@@ -243,11 +243,11 @@ public class Database {
 					// Creo la connessione al database
 					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 
-					sql = "SELECT auto.Targa,auto.Marca,auto.Modello,costo_giornaliero FROM auto,noleggi WHERE auto.Targa = noleggi.auto and noleggi.fine < '"+ dataInizio + "'";
+					sql = "SELECT DISTINCT auto.Targa,auto.Marca,auto.Modello,costo_giornaliero FROM auto,noleggi WHERE auto.Targa = noleggi.auto and noleggi.fine < '"+ dataInizio + "'";
 					// ________________________________query
 
 					st = cn.createStatement(); // creo sempre uno statement sulla
-												// connessione
+					System.out.println(sql);
 					rs = st.executeQuery(sql); // faccio la query su uno statement
 					
 					while (rs.next() == true) {
