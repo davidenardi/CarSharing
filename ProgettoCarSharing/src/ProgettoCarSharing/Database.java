@@ -205,7 +205,7 @@ public class Database {
 
 					sql = "SELECT codice_noleggio,auto,socio,inzio,fine,auto_restituita FROM noleggi WHERE inzio >= '"+dataInizio+"' AND inzio <= '" + dataFine + "';" ;
 					// ________________________________query
-
+					System.out.println(sql);
 					st = cn.createStatement(); // creo sempre uno statement sulla
 												// connessione
 					rs = st.executeQuery(sql); // faccio la query su uno statement

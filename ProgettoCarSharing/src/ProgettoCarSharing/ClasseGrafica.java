@@ -168,12 +168,13 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 				
 				if(combo.getSelectionIndex() >= 0){
 					String giornoInizio = String.valueOf(dataInizioFiltro.getDay());
-					String meseInizio = String.valueOf(dataInizioFiltro.getMonth());
+					String meseInizio = String.valueOf(dataInizioFiltro.getMonth() + 1);
 					String annoInizio = String.valueOf(dataInizioFiltro.getYear());
 					String dataFiltroInizio = annoInizio.concat("-").concat(meseInizio).concat("-").concat(giornoInizio);
 					
+					System.out.println("inizio : " + dataFiltroInizio);
 					String giornoFine = String.valueOf(dataFineFiltro.getDay());
-					String meseFine = String.valueOf(dataFineFiltro.getMonth());
+					String meseFine = String.valueOf(dataFineFiltro.getMonth() + 1);
 					String annoFine = String.valueOf(dataFineFiltro.getYear());
 					String dataFiltroFine = annoFine.concat("-").concat(meseFine).concat("-").concat(giornoFine);
 					//System.out.println(dataFiltro);
@@ -201,12 +202,12 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 						}	
 				}else{
 					String giornoInizio = String.valueOf(dataInizioFiltro.getDay());
-					String meseInizio = String.valueOf(dataInizioFiltro.getMonth());
+					String meseInizio = String.valueOf(dataInizioFiltro.getMonth() + 1);
 					String annoInizio = String.valueOf(dataInizioFiltro.getYear());
 					String dataFiltroInizio = annoInizio.concat("-").concat(meseInizio).concat("-").concat(giornoInizio);
 					
 					String giornoFine = String.valueOf(dataFineFiltro.getDay());
-					String meseFine = String.valueOf(dataFineFiltro.getMonth());
+					String meseFine = String.valueOf(dataFineFiltro.getMonth() + 1);
 					String annoFine = String.valueOf(dataFineFiltro.getYear());
 					String dataFiltroFine = annoFine.concat("-").concat(meseFine).concat("-").concat(giornoFine);
 					//System.out.println(dataFiltro);
@@ -221,7 +222,7 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 						listCodice.add(String.valueOf(elencoNoleggiWhere.get(i).codiceNoleggio));
 						listAuto.add(elencoNoleggiWhere.get(i).auto);
 						listSocio.add(elencoNoleggiWhere.get(i).socio);
-						listInizio.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).inizio));;
+						listInizio.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).inizio));
 						listFine.add(ritornaDataOrdinata(elencoNoleggiWhere.get(i).fine));;	
 						if(elencoNoleggiWhere.get(i).autoRestituita == 1){
 							listRestituita.add("Si");
@@ -273,8 +274,8 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 	public String ritornaDataOrdinata(Date d){
 		Calendar data = Calendar.getInstance();
 		data.setTime(d);
-		String giornoInizio = String.valueOf(Calendar.DAY_OF_MONTH);
-		String meseInizio = String.valueOf(Calendar.MONTH);
+		String giornoInizio = String.valueOf(data.get(Calendar.DAY_OF_MONTH));
+		String meseInizio = String.valueOf(data.get(Calendar.MONTH));
 		String annoInizio = String.valueOf(data.get(Calendar.YEAR));
 		String dataOrdinata = giornoInizio.concat("-").concat(meseInizio).concat("-").concat(annoInizio);
 		return dataOrdinata;
