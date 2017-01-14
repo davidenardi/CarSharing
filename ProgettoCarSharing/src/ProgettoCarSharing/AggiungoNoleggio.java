@@ -65,12 +65,17 @@ public class AggiungoNoleggio {
 	protected void createContents() {
 
 		shlAggiungiNoleggio = new Shell();
+		shlAggiungiNoleggio.setImage(SWTResourceManager.getImage(AggiungoNoleggio.class, "/ProgettoCarSharing/autoimg.png"));
 		shlAggiungiNoleggio.setSize(567, 307);
 		shlAggiungiNoleggio.setText("Aggiungi Noleggio");
 		
-		Label label_1 = new Label(shlAggiungiNoleggio, SWT.NONE);
-		label_1.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		label_1.setBounds(10, 185, 529, 36);
+		Label lblSfondo = new Label(shlAggiungiNoleggio, SWT.NONE);
+		lblSfondo.setImage(SWTResourceManager.getImage(AggiungoNoleggio.class, "/ProgettoCarSharing/autoimg.png"));
+		lblSfondo.setBounds(10, 101, 273, 158);
+		
+		Label lblControllo = new Label(shlAggiungiNoleggio, SWT.NONE);
+		lblControllo.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		lblControllo.setBounds(266, 235, 273, 24);
 		
 		Label lblSocio = new Label(shlAggiungiNoleggio, SWT.NONE);
 		lblSocio.setBounds(253, 71, 54, 24);
@@ -204,20 +209,20 @@ public class AggiungoNoleggio {
 						//auto.substring(0, 7);
 						System.out.println("pronto ad aggiungere: " + dataInizioPrenotazione + " e " + dataFinePrenotazione);
 						db.AggiungiNoleggio(dataInizioPrenotazione, dataFinePrenotazione, socio.substring(0, 16), auto.substring(0, 7));
-						label_1.setText("dati Inseriti");
+						lblControllo.setText("dati Inseriti");
 				}else{
 					System.out.println("date sbagliate, reinserire");
-					label_1.setText("Le date non possono essere cosi', ricontrolla");
+					lblControllo.setText("Le date non possono essere cosi', ricontrolla");
 				}
 				
 				}else{
 					System.out.println("date sbagliate, reinserire");
-					label_1.setText("Le date non possono essere cosi', ricontrolla");
+					lblControllo.setText("Le date non possono essere cosi', ricontrolla");
 				}
 				
 			}
 		});
-		btnAggiungi.setBounds(232, 124, 85, 33);
+		btnAggiungi.setBounds(348, 118, 103, 33);
 		btnAggiungi.setText("Aggiungi");
 		
 		

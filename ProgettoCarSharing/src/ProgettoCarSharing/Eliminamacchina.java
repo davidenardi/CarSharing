@@ -44,6 +44,7 @@ public class Eliminamacchina {
 	public void open() {
 		Display display = Display.getDefault();
 		Shell shell = new Shell();
+		shell.setImage(SWTResourceManager.getImage(Eliminamacchina.class, "/ProgettoCarSharing/autoimg.png"));
 		shell.setSize(377, 258);
 		shell.setText("Elimina una macchina");
 		

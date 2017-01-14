@@ -68,6 +68,7 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 	 */
 	protected void createContents() {
 		shlCarSharingNardi = new Shell();
+		shlCarSharingNardi.setImage(SWTResourceManager.getImage(ClasseGrafica.class, "/ProgettoCarSharing/autoimg.png"));
 		shlCarSharingNardi.setSize(786, 573);
 		shlCarSharingNardi.setText("Car Sharing Nardi & Borto");
 		
