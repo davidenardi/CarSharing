@@ -44,6 +44,7 @@ public class Eliminamacchina {
 	public void open() {
 		Display display = Display.getDefault();
 		Shell shell = new Shell();
+		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		shell.setImage(SWTResourceManager.getImage(Eliminamacchina.class, "/ProgettoCarSharing/autoimg.png"));
 		shell.setSize(377, 258);
 		shell.setText("Elimina una macchina");
@@ -53,12 +54,13 @@ public class Eliminamacchina {
 
 
 		Label lblNewLabel = new Label(shell, SWT.NONE);
+		lblNewLabel.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblNewLabel.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		lblNewLabel.setBounds(10, 146, 339, 28);
+		lblNewLabel.setBounds(10, 187, 156, 23);
 		
 		ComboViewer comboViewer = new ComboViewer(shell, SWT.NONE);
 		Combo comboAuto = comboViewer.getCombo();
-		comboAuto.setBounds(40, 23, 255, 51);
+		comboAuto.setBounds(40, 23, 236, 23);
 		
 		Button btnCancella = new Button(shell, SWT.NONE);
 		btnCancella.addSelectionListener(new SelectionAdapter() {
@@ -77,12 +79,12 @@ public class Eliminamacchina {
 				lblNewLabel.setText("macchina (" + auto.substring(0, 7) + ") e i relativi noleggi eliminati" );
 			}
 		});
-		btnCancella.setBounds(112, 68, 111, 39);
+		btnCancella.setBounds(104, 67, 111, 39);
 		btnCancella.setText("Cancella");
 		
 		Button btnRefresh = new Button(shell, SWT.NONE);
 		btnRefresh.setFont(SWTResourceManager.getFont("Segoe UI", 7, SWT.NORMAL));
-		btnRefresh.setText("refresh");
+		btnRefresh.setText("Aggiorna");
 		btnRefresh.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -95,7 +97,12 @@ public class Eliminamacchina {
 				
 			}
 		});
-		btnRefresh.setBounds(301, 24, 48, 27);
+		btnRefresh.setBounds(301, 21, 48, 27);
+		
+		Label label = new Label(shell, SWT.NONE);
+		label.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
+		label.setImage(SWTResourceManager.getImage(Eliminamacchina.class, "/ProgettoCarSharing/cestino.png"));
+		label.setBounds(153, 0, 208, 220);
 		
 
 		

@@ -65,19 +65,23 @@ public class AggiungoNoleggio {
 	protected void createContents() {
 
 		shlAggiungiNoleggio = new Shell();
+		shlAggiungiNoleggio.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		shlAggiungiNoleggio.setImage(SWTResourceManager.getImage(AggiungoNoleggio.class, "/ProgettoCarSharing/autoimg.png"));
 		shlAggiungiNoleggio.setSize(567, 307);
 		shlAggiungiNoleggio.setText("Aggiungi Noleggio");
 		
 		Label lblSfondo = new Label(shlAggiungiNoleggio, SWT.NONE);
+		lblSfondo.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblSfondo.setImage(SWTResourceManager.getImage(AggiungoNoleggio.class, "/ProgettoCarSharing/autoimg.png"));
-		lblSfondo.setBounds(10, 101, 273, 158);
+		lblSfondo.setBounds(10, 105, 273, 154);
 		
 		Label lblControllo = new Label(shlAggiungiNoleggio, SWT.NONE);
+		lblControllo.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblControllo.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		lblControllo.setBounds(266, 235, 273, 24);
+		lblControllo.setBounds(266, 214, 273, 45);
 		
 		Label lblSocio = new Label(shlAggiungiNoleggio, SWT.NONE);
+		lblSocio.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblSocio.setBounds(253, 71, 54, 24);
 		lblSocio.setText("Socio:");
 		
@@ -102,6 +106,7 @@ public class AggiungoNoleggio {
 		
 		
 		Label lblDataInizio = new Label(shlAggiungiNoleggio, SWT.NONE);
+		lblDataInizio.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblDataInizio.setBounds(10, 20, 92, 24);
 		lblDataInizio.setText("Data Inizio:");
 		
@@ -124,6 +129,7 @@ public class AggiungoNoleggio {
 		label.setBounds(10, 52, 332, 2);
 		
 		Label lblDataFine = new Label(shlAggiungiNoleggio, SWT.NONE);
+		lblDataFine.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblDataFine.setBounds(280, 20, 89, 24);
 		lblDataFine.setText("Data Fine:");
 		
@@ -147,6 +153,7 @@ public class AggiungoNoleggio {
 		dataFineNuovo.setBounds(376, 20, 147, 24);
 		
 		Label lblAuto = new Label(shlAggiungiNoleggio, SWT.NONE);
+		lblAuto.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblAuto.setBounds(10, 71, 46, 36);
 		lblAuto.setText("Auto:");
 		

@@ -68,8 +68,9 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 	 */
 	protected void createContents() {
 		shlCarSharingNardi = new Shell();
+		shlCarSharingNardi.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		shlCarSharingNardi.setImage(SWTResourceManager.getImage(ClasseGrafica.class, "/ProgettoCarSharing/autoimg.png"));
-		shlCarSharingNardi.setSize(786, 573);
+		shlCarSharingNardi.setSize(786, 546);
 		shlCarSharingNardi.setText("Car Sharing Nardi & Borto");
 		
 		
@@ -81,10 +82,12 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		dataInizioFiltro.setBounds(412, 13, 107, 28);
 		
 		Label lblDataInizio = new Label(shlCarSharingNardi, SWT.NONE);
+		lblDataInizio.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblDataInizio.setBounds(377, 21, 22, 20);
 		lblDataInizio.setText("Da:");
 		
 		Label lblSocio_1 = new Label(shlCarSharingNardi, SWT.NONE);
+		lblSocio_1.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblSocio_1.setBounds(43, 21, 52, 20);
 		lblSocio_1.setText("Socio:");
 		
@@ -92,26 +95,32 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		listCodice.setBounds(43, 73, 46, 314);
 		
 		Label lblCodice = new Label(shlCarSharingNardi, SWT.NONE);
+		lblCodice.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblCodice.setBounds(43, 47, 46, 20);
 		lblCodice.setText("Codice");
 		
 		Label lblAuto = new Label(shlCarSharingNardi, SWT.NONE);
+		lblAuto.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblAuto.setBounds(98, 47, 38, 20);
 		lblAuto.setText("Auto");
 		
 		Label lblSocio = new Label(shlCarSharingNardi, SWT.NONE);
+		lblSocio.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblSocio.setBounds(197, 47, 38, 20);
 		lblSocio.setText("Socio");
 		
 		Label lblInizio = new Label(shlCarSharingNardi, SWT.NONE);
+		lblInizio.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblInizio.setBounds(364, 47, 38, 20);
 		lblInizio.setText("Inizio");
 		
 		Label lblFine = new Label(shlCarSharingNardi, SWT.NONE);
+		lblFine.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblFine.setBounds(466, 47, 38, 20);
 		lblFine.setText("Fine");
 		
 		Label lblRestituita = new Label(shlCarSharingNardi, SWT.NONE);
+		lblRestituita.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblRestituita.setBounds(568, 47, 70, 20);
 		lblRestituita.setText("Restituita");
 		
@@ -235,14 +244,16 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 			}
 				
 		});
-		btnCerca.setBounds(666, 13, 59, 30);
+		btnCerca.setBounds(666, 13, 94, 30);
 		btnCerca.setText("Cerca");
 		
 		Label lblA = new Label(shlCarSharingNardi, SWT.NONE);
+		lblA.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
 		lblA.setText("A :");
 		lblA.setBounds(525, 26, 22, 15);
 		
 		Button btnAggiungiUnNuovo = new Button(shlCarSharingNardi, SWT.NONE);
+		btnAggiungiUnNuovo.setForeground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_FOREGROUND));
 		btnAggiungiUnNuovo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -255,6 +266,7 @@ ArrayList<Noleggi> elencoNoleggiWhere = new ArrayList<Noleggi>();
 		btnAggiungiUnNuovo.setText("Aggiungi un nuovo noleggio");
 		
 		Button btnEliminaUnaMacchina = new Button(shlCarSharingNardi, SWT.NONE);
+		btnEliminaUnaMacchina.setForeground(SWTResourceManager.getColor(0, 0, 0));
 		btnEliminaUnaMacchina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
